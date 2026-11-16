@@ -2,16 +2,16 @@
    Colours and sizes. Change the look of the site here.
    ========================================================== */
 :root {
-  --bg: #fbf5ec;
-  --bg-alt: #f5eadc;
-  --surface: #fffaf3;
-  --text: #3b2f2a;
-  --text-soft: #6f5f56;
-  --accent: #b9472f;
-  --accent-soft: #f3d9cc;
-  --sage: #5f7a56;
-  --border: #e6d6c3;
-  --shadow: 0 6px 20px rgba(92, 58, 38, 0.10);
+  --bg: #f1f6fc;
+  --bg-alt: #e3edf8;
+  --surface: #ffffff;
+  --text: #1f2d3f;
+  --text-soft: #55667c;
+  --accent: #2f6db5;
+  --accent-soft: #d3e4f7;
+  --accent-2: #6b62b5;   /* second accent: dates and small labels */
+  --border: #c9dbee;
+  --shadow: 0 6px 20px rgba(40, 80, 130, 0.10);
   --carousel-dim: 0.55;
 
   --font-heading: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
@@ -23,17 +23,17 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #1f1915;
-  --bg-alt: #261f1a;
-  --surface: #2d2520;
-  --text: #f1e6d8;
-  --text-soft: #c2b2a2;
-  --accent: #ee8f6f;
-  --accent-soft: #4a2f25;
-  --sage: #a3bd94;
-  --border: #45392f;
-  --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-  --carousel-dim: 0.4;
+  --bg: #1b2a41;
+  --bg-alt: #213350;
+  --surface: #2a3f60;
+  --text: #e8eff8;
+  --text-soft: #b1c1d6;
+  --accent: #8fc0f5;
+  --accent-soft: #35507a;
+  --accent-2: #c0b8f5;
+  --border: #3d5478;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.30);
+  --carousel-dim: 0.5;
 }
 
 /* ==========================================================
@@ -95,7 +95,7 @@ img { max-width: 100%; display: block; }
   margin: 0 0 0.3em;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
-  color: var(--sage);
+  color: var(--accent-2);
   font-weight: 600;
 }
 
@@ -194,7 +194,7 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-text { flex: 1 1 0; min-width: 0; }
-.hero-greeting { margin: 0; font-size: 1.2rem; color: var(--sage); font-weight: 600; }
+.hero-greeting { margin: 0; font-size: 1.2rem; color: var(--accent-2); font-weight: 600; }
 .hero-tagline { font-size: 1.2rem; color: var(--text-soft); margin-bottom: 1.5em; }
 
 .hero-picture { flex: 0 0 320px; }
