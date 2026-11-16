@@ -1,0 +1,466 @@
+/* ==========================================================
+   Colours and sizes. Change the look of the site here.
+   ========================================================== */
+:root {
+  --bg: #fbf5ec;
+  --bg-alt: #f5eadc;
+  --surface: #fffaf3;
+  --text: #3b2f2a;
+  --text-soft: #6f5f56;
+  --accent: #b9472f;
+  --accent-soft: #f3d9cc;
+  --sage: #5f7a56;
+  --border: #e6d6c3;
+  --shadow: 0 6px 20px rgba(92, 58, 38, 0.10);
+  --carousel-dim: 0.55;
+
+  --font-heading: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  --page-width: 1100px;
+  --nav-height: 64px;
+  --radius: 16px;
+}
+
+:root[data-theme="dark"] {
+  --bg: #1f1915;
+  --bg-alt: #261f1a;
+  --surface: #2d2520;
+  --text: #f1e6d8;
+  --text-soft: #c2b2a2;
+  --accent: #ee8f6f;
+  --accent-soft: #4a2f25;
+  --sage: #a3bd94;
+  --border: #45392f;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  --carousel-dim: 0.4;
+}
+
+/* ==========================================================
+   Base
+   ========================================================== */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+h1 { font-size: 3.2rem; }
+h2 { font-size: 2rem; margin-bottom: 1.2em; }
+h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 0.4em;
+  border-radius: 2px;
+  background: var(--accent);
+}
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; }
+a { color: var(--accent); }
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section { padding: 80px 0; }
+.section:nth-of-type(even) { background: var(--bg-alt); }
+
+.prose { max-width: 70ch; }
+
+.meta {
+  margin: 0 0 0.3em;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--sage);
+  font-weight: 600;
+}
+
+.points { margin: 0 0 1em; padding-left: 1.2em; }
+.points li { margin-bottom: 0.25em; }
+.points li::marker { color: var(--accent); }
+
+/* ==========================================================
+   Navigation bar
+   ========================================================== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--page-width);
+  height: var(--nav-height);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-name {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.nav-links a {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a.is-current { background: var(--accent-soft); color: var(--accent); }
+
+.theme-toggle {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.theme-toggle:hover { transform: rotate(15deg); border-color: var(--accent); }
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Light mode shows the moon, dark mode shows the sun. */
+.icon-sun { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+
+/* ==========================================================
+   1. Summary / bio
+   ========================================================== */
+.hero { padding-top: 96px; }
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+.hero-text { flex: 1 1 0; min-width: 0; }
+.hero-greeting { margin: 0; font-size: 1.2rem; color: var(--sage); font-weight: 600; }
+.hero-tagline { font-size: 1.2rem; color: var(--text-soft); margin-bottom: 1.5em; }
+
+.hero-picture { flex: 0 0 320px; }
+.hero-picture img {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+  border: 6px solid var(--surface);
+  box-shadow: var(--shadow);
+}
+
+/* ==========================================================
+   2. Technologies
+   ========================================================== */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.tech-group {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.tech-group h3 { font-size: 1.05rem; }
+
+.tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tags li {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  font-size: 0.88rem;
+}
+
+/* ==========================================================
+   3. Work experience (timeline)
+   ========================================================== */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+  border-left: 2px solid var(--border);
+}
+.timeline-item { position: relative; padding-bottom: 28px; max-width: 75ch; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -41px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+}
+.section:nth-of-type(even) .timeline-item::before { border-color: var(--bg-alt); }
+.at { color: var(--text-soft); font-weight: 400; }
+
+/* ==========================================================
+   4. Projects (cards)
+   ========================================================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-4px); }
+
+.card-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  font-size: 0.95rem;
+}
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.button-link {
+  padding: 6px 14px;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+.button-link:hover { background: var(--accent); color: var(--surface); }
+
+/* ==========================================================
+   5 and 6. Education and awards (entries)
+   ========================================================== */
+.entry-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+  gap: 20px;
+}
+
+.entry {
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--accent);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+.entry h3 { font-size: 1.1rem; margin-bottom: 0.3em; }
+.entry p:last-child { margin-bottom: 0; }
+.issuer { color: var(--text-soft); font-style: italic; margin-bottom: 0.7em; }
+
+/* ==========================================================
+   7. Hobbies
+   ========================================================== */
+.hobby + .hobby { margin-top: 72px; }
+.hobby h3 { font-size: 1.5rem; }
+
+/* Coverflow carousel. The script sets --offset (position relative
+   to the center image) and --distance (the same without a sign). */
+.carousel {
+  --slide-width: 440px;
+  --slide-height: 310px;
+  --slide-shift: 58%;   /* how far each side image moves; lower = more overlap */
+  position: relative;
+  margin-top: 28px;
+}
+
+.carousel-stage {
+  position: relative;
+  height: var(--slide-height);
+  overflow: hidden;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--slide-width);
+  max-width: 70%;
+  height: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  /* center the slide, move it sideways by its offset, shrink it by its distance */
+  transform: translateX(-50%)
+             translateX(calc(var(--offset) * var(--slide-shift)))
+             scale(calc(1 - var(--distance) * 0.16));
+  filter: brightness(var(--carousel-dim)) blur(2px);
+  transition: transform 0.7s ease, filter 0.7s ease, opacity 0.7s ease;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.carousel-slide.is-active { filter: none; cursor: default; }
+.carousel-slide.is-hidden { opacity: 0; pointer-events: none; }
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 200;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.carousel-arrow:hover { background: var(--accent); color: var(--surface); }
+.carousel-arrow svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.carousel-arrow-prev { left: 12px; }
+.carousel-arrow-next { right: 12px; }
+
+/* ==========================================================
+   9. Contact and footer
+   ========================================================== */
+.contact-links { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, border-color 0.2s, color 0.2s;
+}
+.contact-link:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); }
+.contact-link svg { width: 30px; height: 30px; }
+
+.footer {
+  padding: 28px 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+.footer p { margin: 0; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ==========================================================
+   Mobile styles: not added yet.
+   When you want the site to work on phones, add rules here, e.g.
+
+   @media (max-width: 800px) {
+     .hero-inner { flex-direction: column-reverse; }
+     .nav-links  { display: none; }   (or turn it into a menu)
+     .entry-list { grid-template-columns: 1fr; }
+     .carousel   { --slide-width: 280px; --slide-height: 200px; }
+   }
+   ========================================================== */

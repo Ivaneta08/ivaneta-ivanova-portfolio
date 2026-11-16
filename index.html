@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ivaneta Ivanova | Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Sets the saved theme before the page is drawn, so there is no flash. -->
+  <script>
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("theme"); } catch (e) {}
+      if (!theme) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Sticky navigation bar -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-name" href="#about" id="nav-name"></a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#technologies">Technologies</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#awards">Awards</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#future">Future plans</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch between light and dark mode" title="Switch between light and dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Summary / bio (text from content/bio.js) -->
+    <section id="about" class="section hero">
+      <div class="container hero-inner">
+        <div class="hero-text" id="bio-text"></div>
+        <div class="hero-picture" id="bio-picture"></div>
+      </div>
+    </section>
+
+    <!-- 2. Technologies (content/technologies.js) -->
+    <section id="technologies" class="section">
+      <div class="container">
+        <h2>Technologies and field of expertise</h2>
+        <div id="technologies-content"></div>
+      </div>
+    </section>
+
+    <!-- 3. Work experience (content/experience.js) -->
+    <section id="experience" class="section">
+      <div class="container">
+        <h2>Work experience</h2>
+        <div id="experience-content" class="timeline"></div>
+      </div>
+    </section>
+
+    <!-- 4. Projects (content/projects.js) -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div id="projects-content" class="card-grid"></div>
+      </div>
+    </section>
+
+    <!-- 5. Education and training (content/education.js) -->
+    <section id="education" class="section">
+      <div class="container">
+        <h2>Education and training</h2>
+        <div id="education-content" class="entry-list"></div>
+      </div>
+    </section>
+
+    <!-- 6. Awards (content/awards.js) -->
+    <section id="awards" class="section">
+      <div class="container">
+        <h2>Awards from competitions</h2>
+        <div id="awards-content" class="entry-list"></div>
+      </div>
+    </section>
+
+    <!-- 7. Hobbies and interests (content/hobbies.js) -->
+    <section id="hobbies" class="section">
+      <div class="container">
+        <h2>Hobbies and interests</h2>
+        <div id="hobbies-content"></div>
+      </div>
+    </section>
+
+    <!-- 8. Future plans (content/future.js) -->
+    <section id="future" class="section">
+      <div class="container">
+        <h2>Future plans</h2>
+        <div id="future-content" class="prose"></div>
+      </div>
+    </section>
+
+    <!-- 9. Contact (content/contact.js) -->
+    <section id="contact" class="section">
+      <div class="container contact">
+        <h2>Contact</h2>
+        <p id="contact-intro"></p>
+        <div id="contact-links" class="contact-links"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p id="footer-text"></p>
+  </footer>
+
+  <!-- Content: edit these files to change what the site says. -->
+  <script>var content = {};</script>
+  <script src="content/site.js"></script>
+  <script src="content/bio.js"></script>
+  <script src="content/technologies.js"></script>
+  <script src="content/experience.js"></script>
+  <script src="content/projects.js"></script>
+  <script src="content/education.js"></script>
+  <script src="content/awards.js"></script>
+  <script src="content/hobbies.js"></script>
+  <script src="content/future.js"></script>
+  <script src="content/contact.js"></script>
+
+  <!-- Code: builds the page from the content above. -->
+  <script src="js/carousel.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
