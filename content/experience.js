@@ -11,6 +11,8 @@ content.experience = [
     description: "",
     points: [
       "Monitoring and management of photovoltaic plant operations and performance.",
+      "Working with energy management systems to optimize energy consumption.",
+      "Monitoring of battery management systems (BMS) for industrial plants (MW).",
       "Tracking and analysis of generation data, and identification of deviations and malfunctions.",
       "Assistance with the diagnosis and resolution of technical issues.",
       "Familiarization with the processes for trading and selling the generated electricity."
